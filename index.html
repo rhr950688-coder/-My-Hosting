@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StaticForge · Free static HTML hosting</title>
+  <!-- Google Font & Font Awesome for modern icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafc;
+      color: #0b1b2f;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* modern gradient backdrop */
+    .gradient-bg {
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo i {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1e293b;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .btn-outline {
+      border: 1.5px solid #2563eb;
+      background: transparent;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: #2563eb;
+      transition: 0.2s;
+      cursor: pointer;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 8px 20px -6px rgba(37, 99, 235, 0.3);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-primary i {
+      font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      box-shadow: 0 12px 24px -8px rgba(37, 99, 235, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 3rem;
+      padding: 3rem 2rem 5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      flex: 1 1 400px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: #0b1b2f;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #475569;
+      margin-bottom: 2.5rem;
+      max-width: 550px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0b1b2f;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    /* Upload card */
+    .upload-card {
+      flex: 1 1 380px;
+      background: white;
+      border-radius: 32px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      transition: transform 0.2s;
+    }
+
+    .upload-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .upload-card > p {
+      color: #64748b;
+      margin-bottom: 1.8rem;
+      font-size: 1rem;
+    }
+
+    .dropzone {
+      border: 2px dashed #cbd5e1;
+      background: #f8fafc;
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 1.5rem;
+    }
+
+    .dropzone:hover {
+      border-color: #2563eb;
+      background: #f1f5f9;
+    }
+
+    .dropzone i {
+      font-size: 2.8rem;
+      color: #2563eb;
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .dropzone p {
+      font-weight: 500;
+      color: #1e293b;
+      margin-bottom: 0.3rem;
+    }
+
+    .dropzone span {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .file-input {
+      display: none;
+    }
+
+    .upload-btn {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .upload-btn i {
+      font-size: 1.1rem;
+    }
+
+    .file-list {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #1e293b;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 100px;
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+    }
+
+    .file-item i {
+      color: #2563eb;
+      font-size: 0.9rem;
+    }
+
+    /* Progress bar */
+    .progress-container {
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 100px;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Status message */
+    .status-message {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-message.success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      display: flex;
+    }
+
+    .status-message.error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      display: flex;
+    }
+
+    .status-message.info {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+      display: flex;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      background: white;
+      padding: 5rem 2rem;
+      border-top: 1px solid #eef2f6;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #0b1b2f;
+    }
+
+    .section-header p {
+      color: #475569;
+      font-size: 1.2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #f9fafc;
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #eef2f6;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+      background: white;
+      border-color: #dbeafe;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #dbeafe, #ede9fe);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-icon i {
+      font-size: 1.8rem;
+      color: #2563eb;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #0b1b2f;
+    }
+
+    .feature-card p {
+      color: #475569;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    /* ===== CALL TO ACTION ===== */
+    .cta-section {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: linear-gradient(145deg, #ffffff, #f3f6fe);
+    }
+
+    .cta-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 48px;
+      padding: 3.5rem 2rem;
+      box-shadow: 0 30px 50px -25px rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+    }
+
+    .cta-box h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #0b1b2f;
+    }
+
+    .cta-box p {
+      color: #475569;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-box .btn-primary {
+      font-size: 1.1rem;
+      padding: 1rem 2.8rem;
+    }
+
+    .cta-note {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid #eef2f6;
+      background: white;
+    }
+
+    footer .fa-heart {
+      color: #ef4444;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem 3rem;
+      }
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      .cta-box h2 {
+        font-size: 2rem;
+      }
+      .upload-card {
+        padding: 2rem 1.5rem;
+      }
+      .hero-stats {
+        gap: 1.5rem;
+      }
+      .stat-number {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero-cta .btn-primary, .hero-cta .btn-outline {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body class="gradient-bg">
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      <i class="fas fa-bolt"></i> StaticForge
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#upload">Upload</a>
+      <a href="#get-started">Pricing</a>
+      <a href="#" class="btn-outline">Sign in</a>
+    </div>
+  </nav>
+
+  <!-- Hero + Upload section -->
+  <section class="hero" id="upload">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-cloud-upload-alt" style="margin-right: 6px;"></i> Free forever · No credit card
+      </div>
+      <h1>
+        Host your static site <span>in seconds</span>
+      </h1>
+      <p>
+        Drag & drop your HTML, CSS, and JS files. Get a live URL instantly. 
+        Custom domains, SSL, and global CDN — all free.
+      </p>
+      <div class="hero-cta">
+        <a href="#" class="btn-primary" id="get-started">
+          <i class="fas fa-rocket"></i> Start hosting free
+        </a>
+        <a href="#features" class="btn-outline" style="padding: 0.85rem 2rem;">
+          <i class="fas fa-arrow-down" style="margin-right: 6px;"></i> See features
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">12k+</span>
+          <span class="stat-label">sites deployed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99.99%</span>
+          <span class="stat-label">uptime</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">0$</span>
+          <span class="stat-label">forever free</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload card -->
+    <div class="upload-card">
+      <h3><i class="fas fa-cloud-upload-alt" style="color: #2563eb; margin-right: 8px;"></i>Quick deploy</h3>
+      <p>Drop your static files (HTML, CSS, JS, images)</p>
+
+      <div class="dropzone" id="dropzone">
+        <i class="fas fa-file-archive"></i>
+        <p>Drag & drop files here</p>
+        <span>or click to browse</span>
+        <input type="file" id="fileInput" class="file-input" multiple webkitdirectory directory>
+      </div>
+
+      <button class="btn-primary upload-btn" id="uploadBtn">
+        <i class="fas fa-upload"></i> Upload & deploy
+      </button>
+
+      <!-- Progress bar -->
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+      </div>
+
+      <!-- Status message -->
+      <div class="status-message" id="statusMessage"></div>
+
+      <div class="file-list" id="fileList">
+        <!-- Selected files will appear here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2>Everything you need to go live</h2>
+      <p>Static hosting without the hassle — built for developers, designers, and creators.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <h3>Custom domains</h3>
+        <p>Bring your own domain or use a free subdomain. Automatic SSL included, zero configuration.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Global CDN</h3>
+        <p>Your site is served from edge locations worldwide. Fast load times, no cold starts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+        <h3>Free SSL</h3>
+        <p>Every site gets HTTPS by default. Secure connections with auto-renewing certificates.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+        <h3>Git integration</h3>
+        <p>Connect your GitHub repo and deploy automatically on every push. CI/CD made simple.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Analytics</h3>
+        <p>Built-in, privacy-friendly analytics to see visits and top pages. No extra scripts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+        <h3>Unlimited sites</h3>
+        <p>Host as many static projects as you want. Perfect for portfolios, docs, and experiments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2>Ready to launch?</h2>
+      <p>Join thousands of developers hosting their static sites for free. No credit card, no trials, no hidden fees.</p>
+      <a href="#" class="btn-primary" id="ctaBtn">
+        <i class="fas fa-cloud-upload-alt"></i> Get started — it's free
+      </a>
+      <div class="cta-note">
+        <i class="fas fa-check-circle" style="color: #22c55e;"></i> Free forever · <i class="fas fa-check-circle" style="color: #22c55e;"></i> No credit card
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 StaticForge · Built with <i class="fas fa-heart"></i> for the static web</p>
+  </footer>
+
+  <!-- Firebase SDK (compat mode for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    // ============================================
+    // 🔥 FIREBASE CONFIGURATION (আপনার দেওয়া কোড)
+    // ============================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyArMCg3_R_6Edy9c9uSPOYGLv7aXjGEBmk",
+      authDomain: "earnzone-ce3f1.firebaseapp.com",
+      databaseURL: "https://earnzone-ce3f1-default-rtdb.firebaseio.com",
+      projectId: "earnzone-ce3f1",
+      storageBucket: "earnzone-ce3f1.firebasestorage.app",
+      messagingSenderId: "722733804671",
+      appId: "1:722733804671:web:fda1620d42d00c19ae634a",
+      measurementId: "G-YMPZZ06ZJV"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const storage = firebase.storage();
+    const db = firebase.firestore();
+
+    console.log('🔥 Firebase initialized successfully');
+
+    // ============================================
+    // UI ELEMENTS
+    // ============================================
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const statusMessage = document.getElementById('statusMessage');
+
+    // ============================================
+    // UI HELPERS
+    // ============================================
+    function showStatus(type, icon, message) {
+      statusMessage.className = `status-message ${type}`;
+      statusMessage.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+      statusMessage.style.display = 'flex';
+    }
+
+    function hideStatus() {
+      statusMessage.style.display = 'none';
+    }
+
+    function resetProgress() {
+      progressContainer.style.display = 'none';
+      progressFill.style.width = '0%';
+      progressText.textContent = '0%';
+    }
+
+    // ============================================
+    // FILE LIST DISPLAY
+    // ============================================
+    function updateFileList(files) {
+      fileList.innerHTML = '';
+      if (!files.length) {
+        fileList.innerHTML = '<div style="text-align:center; color:#94a3b8; font-size:0.85rem; padding:8px;">No files selected</div>';
+        return;
+      }
+      const maxShow = 5;
+      const fileArray = Array.from(files);
+      const showFiles = fileArray.slice(0, maxShow);
+      showFiles.forEach(file => {
+        const div = document.createElement('div');
+        div.className = 'file-item';
+        let iconClass = 'fa-file';
+        if (file.name.endsWith('.html') || file.name.endsWith('.htm')) iconClass = 'fa-file-code';
+        else if (file.name.endsWith('.css')) iconClass = 'fa-file-css';
+        else if (file.name.endsWith('.js')) iconClass = 'fa-file-js';
+        else if (file.name.match(/\.(png|jpg|jpeg|gif|svg|webp)$/i)) iconClass = 'fa-file-image';
+        else if (file.name.endsWith('.zip')) iconClass = 'fa-file-archive';
+
+        div.innerHTML = `<i class="fas ${iconClass}"></i><span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${file.name}</span> <span style="margin-left: auto; color: #64748b; white-space:nowrap;">${(file.size / 1024).toFixed(1)} KB</span>`;
+        fileList.appendChild(div);
+      });
+      if (fileArray.length > maxShow) {
+        const more = document.createElement('div');
+        more.className = 'file-item';
+        more.style.justifyContent = 'center';
+        more.style.background = 'transparent';
+        more.style.color = '#2563eb';
+        more.innerHTML = `<i class="fas fa-plus-circle"></i> and ${fileArray.length - maxShow} more file(s)`;
+        fileList.appendChild(more);
+      }
+    }
+
+    // ============================================
+    // DRAG & DROP HANDLERS
+    // ============================================
+    dropzone.addEventListener('click', () => fileInput.click());
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '#2563eb';
+      dropzone.style.background = '#f1f5f9';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.borderColor = '#cbd5e1';
+      dropzone.style.background = '#f8fafc';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.borderColor = '#cbd5e1';
+      dropzone.style.background = '#f8fafc';
+      const files = e.dataTransfer.files;
+      if (files.length) {
+        fileInput.files = files;
+        updateFileList(files);
+        hideStatus();
+      }
+    });
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length) {
+        updateFileList(fileInput.files);
+        hideStatus();
+      }
+    });
+
+    // ============================================
+    // 🔥 UPLOAD TO FIREBASE STORAGE
+    // ============================================
+    uploadBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      const files = fileInput.files;
+      if (!files.length) {
+        showStatus('error', 'fa-exclamation-circle', 'Please select or drop some files first.');
+        return;
+      }
+
+      // Disable button during upload
+      uploadBtn.disabled = true;
+      uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+      hideStatus();
+      resetProgress();
+      progressContainer.style.display = 'block';
+
+      const totalFiles = files.length;
+      let uploadedCount = 0;
+      let totalBytes = 0;
+      let uploadedBytes = 0;
+
+      // Calculate total size
+      for (let i = 0; i < totalFiles; i++) {
+        totalBytes += files[i].size;
+      }
+
+      const folderName = `deployments/${Date.now()}`;
+      const uploadedUrls = [];
+
+      try {
+        // Upload files one by one
+        for (let i = 0; i < totalFiles; i++) {
+          const file = files[i];
+          // Create unique path: deployments/timestamp/filename
+          const storageRef = storage.ref(`${folderName}/${file.name}`);
+
+          // Upload with progress tracking
+          const uploadTask = storageRef.put(file);
+
+          await new Promise((resolve, reject) => {
+            uploadTask.on('state_changed',
+              (snapshot) => {
+                // Progress for current file
+                const currentFileProgress = snapshot.bytesTransferred / snapshot.totalBytes;
+                const overallBytes = uploadedBytes + (file.size * currentFileProgress);
+                const overallPercent = Math.round((overallBytes / totalBytes) * 100);
+                progressFill.style.width = overallPercent + '%';
+                progressText.textContent = `${overallPercent}% (${uploadedCount + 1}/${totalFiles} files)`;
+              },
+              (error) => {
+                console.error('Upload error:', error);
+                reject(error);
+              },
+              async () => {
+                // File uploaded successfully
+                const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                uploadedUrls.push({
+                  name: file.name,
+                  url: downloadURL,
+                  path: `${folderName}/${file.name}`,
+                  size: file.size
+                });
+                uploadedBytes += file.size;
+                uploadedCount++;
+                resolve();
+              }
+            );
+          });
+        }
+
+        // All files uploaded — save metadata to Firestore
+        const siteId = 'site_' + Date.now();
+        await db.collection('deployments').doc(siteId).set({
+          siteId: siteId,
+          folder: folderName,
+          files: uploadedUrls,
+          fileCount: totalFiles,
+          totalSize: totalBytes,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          status: 'live'
+        });
+
+        // Success!
+        progressFill.style.width = '100%';
+        progressText.textContent = '100%';
+        showStatus('success', 'fa-check-circle',
+          `Successfully deployed ${totalFiles} file(s)! Your site is live.`);
+
+        // Show site URL (using first HTML file)
+        const htmlFile = uploadedUrls.find(f => f.name.endsWith('.html') || f.name.endsWith('.htm'));
+        if (htmlFile) {
+          setTimeout(() => {
+            showStatus('info', 'fa-link',
+              `Your site: <a href="${htmlFile.url}" target="_blank" style="color:#1e40af; font-weight:600; text-decoration:underline;">${htmlFile.url.substring(0, 60)}...</a>`);
+          }, 2000);
+        }
+
+        uploadBtn.innerHTML = '<i class="fas fa-check-circle"></i> Deployed!';
+        setTimeout(() => {
+          uploadBtn.disabled = false;
+          uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Upload & deploy';
+        }, 3000);
+
+        console.log('✅ Upload complete. Site ID:', siteId);
+        console.log('📁 Files:', uploadedUrls);
+
+      } catch (error) {
+        console.error('❌ Upload failed:', error);
+        showStatus('error', 'fa-times-circle',
+          `Upload failed: ${error.message || 'Please check your Firebase Storage rules.'}`);
+        uploadBtn.disabled = false;
+        uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Upload & deploy';
+        resetProgress();
+      }
+    });
+
+    // ============================================
+    // SMOOTH SCROLL & CTA
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    const ctaBtns = ['get-started', 'ctaBtn'];
+    ctaBtns.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          document.getElementById('upload').scrollIntoView({ behavior: 'smooth' });
+          const dz = document.getElementById('dropzone');
+          dz.style.transition = 'box-shadow 0.3s';
+          dz.style.boxShadow = '0 0 0 4px rgba(37, 99, 235, 0.2)';
+          setTimeout(() => { dz.style.boxShadow = 'none'; }, 1000);
+        });
+      }
+    });
+
+    // Initialize file list
+    updateFileList([]);
+  </script>
+</body>
+</html>
